@@ -15,7 +15,7 @@ class ViewflowFrontendConfig(ModuleMixin, AppConfig):
 
     name = 'viewflow.frontend'
     label = 'viewflow_frontend'
-    verbose_name = _("Workflow")
+    verbose_name = _("Claims Approval")
     icon = '<i class="material-icons">assignment</i>'
     viewset = 'viewflow.frontend.viewset.FrontendViewSet'
 
