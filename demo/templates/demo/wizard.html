@@ -1,24 +1,20 @@
 {% load static %}
 <script type="text/javascript">
 var tour;
-
 tour = new Shepherd.Tour({
   defaults: {
     classes: 'shepherd-element shepherd-open shepherd-theme-arrows',
   }
 });
-
 if($.cookie('examples.first_login') === undefined) {
     tour.addStep('welcome', {
-       text: ['Welcome to Techtenant Zep',
-              'Start with "Admin" user to get<br/> access to all functionalities'],
+       text: ['Welcome to the Viewflow Demo',
+              'Start with "Admin" user to get<br/> access to all flows'],
        classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
        attachTo: '.nav-wrapper bottom'
     });
     $.cookie('examples.first_login', true);
 }
-
-
 {% if user.is_anonymous %}
 tour.addStep('login', {
   text: ['Use dropdown to login under any demo user'],
@@ -29,7 +25,6 @@ tour.addStep('login', {
   buttons: []
 });
 {% endif %}
-
 {% if user.username == 'shipment/worker' %}
 if($.cookie('examples.shipment/worker') === undefined) {
     tour.addStep('shipment/worker', {
@@ -45,7 +40,6 @@ if($.cookie('examples.shipment/worker') === undefined) {
     $.cookie('examples.shipment/worker', true);
 }
 {% endif %}
-
 {% if user.username == 'shipment/manager' %}
 if($.cookie('examples.shipment/manager') === undefined) {
     tour.addStep('shipment/manager', {
@@ -61,7 +55,6 @@ if($.cookie('examples.shipment/manager') === undefined) {
     $.cookie('examples.shipment/manager', true);
 }
 {% endif %}
-
 {% if user.username == 'shipment/clerk' %}
 if($.cookie('examples.shipment/clerk') === undefined) {
     tour.addStep('shipment/clerk', {
@@ -79,7 +72,6 @@ if($.cookie('examples.shipment/clerk') === undefined) {
     $.cookie('examples.shipment/clerk', true);
 }
 {% endif %}
-
 {% if user.username == 'helloworld/manager' %}
 if($.cookie('examples.helloworld/manager') === undefined) {
     tour.addStep('helloworld/manager', {
@@ -95,7 +87,6 @@ if($.cookie('examples.helloworld/manager') === undefined) {
     $.cookie('examples.helloworld/manager', true);
 }
 {% endif %}
-
 {% if user.username == 'helloworld/employee' %}
 if($.cookie('examples.helloworld/employee') === undefined) {
     tour.addStep('helloworld/employee', {
@@ -111,7 +102,6 @@ if($.cookie('examples.helloworld/employee') === undefined) {
     $.cookie('examples.helloworld/employee', true);
 }
 {% endif %}
-
 {% if user.username == 'admin' %}
 if($.cookie('examples.admin') === undefined) {
     tour.addStep('admin', {
@@ -127,6 +117,5 @@ if($.cookie('examples.admin') === undefined) {
     $.cookie('examples.admin', true);
 }
 {% endif %}
-
 tour.start();
 </script>
