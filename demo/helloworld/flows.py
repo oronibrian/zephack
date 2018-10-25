@@ -17,18 +17,18 @@ class HelloWorldFlow(Flow):
     This process demonstrates hello world approval request flow.
     """
     process_class = HelloWorldProcess
-    process_title = _('Hello world')
-    process_description = _('This process demonstrates hello world approval request flow.')
+    process_title = _('New Claim Application')
+    process_description = _('This process involves Application of claim approval request.')
 
     lock_impl = lock.select_for_update_lock
 
-    summary_template = _("'{{ process.text }}' message to the world")
+    summary_template = _("'{{ process.text }}'")
 
     start = (
         flow.Start(
             flow_views.CreateProcessView,
             fields=['text'],
-            task_title=_('New message'))
+            task_title=_('New Claim'))
         .Permission(auto_create=True)
         .Next(this.approve)
     )
@@ -37,8 +37,8 @@ class HelloWorldFlow(Flow):
         flow.View(
             flow_views.UpdateProcessView, fields=['approved'],
             task_title=_('Approve'),
-            task_description=_("Message approvement required"),
-            task_result_summary=_("Messsage was {{ process.approved|yesno:'Approved,Rejected' }}"))
+            task_description=_("Claim approvement required"),
+            task_result_summary=_("Claim was {{ process.approved|yesno:'Approved,Rejected' }}"))
         .Permission(auto_create=True)
         .Next(this.check_approve)
     )
