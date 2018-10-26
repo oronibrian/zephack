@@ -8,6 +8,9 @@ class ClaimProcess(Process):
     text = models.CharField(_('Message'), max_length=50)
 
     location_of_loss = models.CharField(max_length=255)
+    date_of_loss_from = models.DateField(null=True)
+    date_of_loss_to = models.DateField(null=True)
+
     class_of_business = models.CharField(max_length=255)
     business_of_insured =models. CharField(max_length=255)
     consequence_of_loss =models. CharField(max_length=255)

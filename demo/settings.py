@@ -24,10 +24,6 @@ INSTALLED_APPS = (
     # viewflow
     'viewflow.frontend',
     'viewflow',
-
-    # material
-    'material.theme.lightblue',
-
     'material',
     'material.frontend',
     'material.admin',
