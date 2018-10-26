@@ -12,7 +12,7 @@ class Demo(ModuleMixin):
     Home page module
     """
     order = 1
-    label = 'Introduction'
+    label = 'Claim Approval Portal'
     icon = '<i class="material-icons">account_balance</i>'
 
     @property
@@ -40,4 +40,6 @@ urlpatterns = [
     url(r'^accounts/logout/$', auth.LogoutView.as_view(), name='logout'),
     url(r'^', include('demo.website')),
     url(r'', include(frontend_urls)),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
 ]

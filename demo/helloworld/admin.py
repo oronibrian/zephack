@@ -11,4 +11,4 @@ class HelloWorldProcessAdmin(ProcessAdmin):
     list_display_links = ['pk', 'created']
 
 
-admin.site.register(models.HelloWorldProcess, HelloWorldProcessAdmin)
+admin.site.register(models.ClaimProcess, HelloWorldProcessAdmin)

@@ -26,6 +26,8 @@ INSTALLED_APPS = (
     'viewflow',
 
     # material
+    'material.theme.lightblue',
+
     'material',
     'material.frontend',
     'material.admin',
@@ -39,6 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'demo.customnode',
     'demo.helloworld',
+
+    'ckeditor',
     # 'demo.shipment',
 )
 
@@ -113,10 +117,13 @@ if django.VERSION < (1, 7):
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT ='demo/static'
+MEDIA_ROOT='demo/uploads'
+CKEDITOR_UPLOAD_PATH = "demo/uploads"
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "demo", "static"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "demo", "static"),
+# ]
 
 try:
     from demo.local_settings import *  # NOQA

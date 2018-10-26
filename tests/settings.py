@@ -31,6 +31,8 @@ INSTALLED_APPS = (
     'viewflow',
     'tests',
     'demo.customnode',
+        'ckeditor',
+
     'demo.helloworld',
     # 'demo.shipment',
 )
@@ -132,3 +134,18 @@ CELERY_IMPORTS = [
     if filename.startswith('test_') and filename.endswith('.py')]
 
 DJKOMBU_POLLING_INTERVAL = 0.05
+
+
+STATIC_ROOT ='demo/static'
+MEDIA_ROOT='demo/uploads'
+
+
+CKEDITOR_BASEPATH = "/demo/ckeditor/ckeditor"
+CKEDITOR_UPLOAD_PATH = "demo/uploads/"
+
+
+CKEDITOR_CONFIGS = {
+    'awesome_ckeditor': {
+        'toolbar': 'Basic',
+    },
+}

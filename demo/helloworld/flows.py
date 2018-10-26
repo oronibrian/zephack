@@ -6,19 +6,14 @@ from viewflow.base import this, Flow
 from viewflow.flow import views as flow_views
 
 
-from .models import HelloWorldProcess
+from .models import ClaimProcess
 
 
 @frontend.register
 class HelloWorldFlow(Flow):
-    """
-    Hello world
-
-    This process demonstrates hello world approval request flow.
-    """
-    process_class = HelloWorldProcess
+    process_class = ClaimProcess
     process_title = _('New Claim Application')
-    process_description = _('This process involves Application of claim approval request.')
+    process_description = _('TLodging new claim request.')
 
     lock_impl = lock.select_for_update_lock
 
@@ -27,11 +22,14 @@ class HelloWorldFlow(Flow):
     start = (
         flow.Start(
             flow_views.CreateProcessView,
-            fields=['text'],
-            task_title=_('New Claim'))
+            fields=['text','location_of_loss','class_of_business','business_of_insured',
+            'consequence_of_loss','description'],
+            task_title=_('Lodge Claim'))
         .Permission(auto_create=True)
         .Next(this.approve)
     )
+
+
 
     approve = (
         flow.View(
@@ -40,6 +38,8 @@ class HelloWorldFlow(Flow):
             task_description=_("Claim approvement required"),
             task_result_summary=_("Claim was {{ process.approved|yesno:'Approved,Rejected' }}"))
         .Permission(auto_create=True)
+        .Assign(lambda act: act.process.created_by)
+
         .Next(this.check_approve)
     )
 
@@ -55,7 +55,7 @@ class HelloWorldFlow(Flow):
     send = (
         flow.Handler(
             this.send_hello_world_request,
-            task_title=_('Send message'),
+            task_title=_('Send Claim'),
         )
         .Next(this.end)
     )
